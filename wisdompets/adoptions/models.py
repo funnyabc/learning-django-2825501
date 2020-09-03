@@ -12,7 +12,10 @@ class Pet(models.Model):
     submission_date = models.DateTimeField()
     # null allows for unknown age. Otherwise stored as 0, which causes ambiguity
     age = models.IntegerField(null=True)
-    vaccination = models.ManyToManyField('Vaccine', blank=True)
+    vaccinations = models.ManyToManyField('Vaccine', blank=True)
 
 class Vaccine(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
